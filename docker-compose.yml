@@ -3,6 +3,7 @@ services:
   web:
     volumes:
       - ./app:/app
+      - /app/node_modules
     build: .
     ports:
       - "3000:3000"

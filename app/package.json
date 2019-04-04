@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "LinkedIn Scraper",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m0sk1t/linscra.git"
+  },
   "scripts": {
     "start": "node index.js",
     "start:livereload": "nodemon index.js",
