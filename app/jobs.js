@@ -2,7 +2,7 @@ const crypto = require('crypto');
 const router = require('express').Router();
 
 const redisClient = require('./redisClient');
-const runJob = require('./runJob');
+const createJob = require('./createJob');
 
 router.get('/:company/:tag', (req, res) => {
   const { company, tag } = req.params;
@@ -12,7 +12,7 @@ router.get('/:company/:tag', (req, res) => {
     redisInstance.get(hash, (err, key) => {
       if (err) return res.status(500).send(`Error while creating job: ${err.message}`);
       !key && redisInstance.set(hash, 'running');
-      !key && runJob.then((status) => {
+      !key && createJob().then((status) => {
         console.log(status);
         redisInstance.set(hash, 'done!');
       });
