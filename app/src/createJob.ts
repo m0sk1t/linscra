@@ -4,4 +4,4 @@ const createJob = () => {
   });
 };
 
-module.exports = createJob;
+export default createJob;

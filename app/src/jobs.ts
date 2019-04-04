@@ -1,12 +1,15 @@
-const crypto = require('crypto');
-const router = require('express').Router();
+import crypto from'crypto';
+import { Request, Response, Router } from "express";
 
-const redisClient = require('./redisClient');
-const createJob = require('./createJob');
 
-router.get('/:company/:tag', (req, res) => {
+import createJob from './createJob';
+import { init as redisClient } from './redisClient';
+
+const router = Router();
+
+router.get('/:company/:tag', (req: Request, res: Response) => {
   const { company, tag } = req.params;
-  const redisInstance = redisClient.getConn();
+  const redisInstance = redisClient();
   try {
     const hash = crypto.createHmac('sha256', 'tsss.. secret').update(company + tag).digest('hex');
     redisInstance.get(hash, (err, key) => {
@@ -23,4 +26,4 @@ router.get('/:company/:tag', (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

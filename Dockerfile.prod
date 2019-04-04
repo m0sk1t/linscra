@@ -2,4 +2,5 @@ FROM node:lts-jessie
 ADD ./app /app
 WORKDIR /app
 RUN npm i
-ENTRYPOINT npm run start
+RUN npm run build
+ENTRYPOINT npm run prod

@@ -2,25 +2,36 @@
   "name": "app",
   "version": "1.0.0",
   "description": "LinkedIn Scraper",
-  "main": "index.js",
+  "main": "build/index",
+  "types": "build/index",
   "repository": {
     "type": "git",
     "url": "https://github.com/m0sk1t/linscra.git"
   },
   "scripts": {
-    "start": "node index.js",
-    "start:livereload": "nodemon -L index.js",
+    "tsc": "tsc",
+    "build": "tsc -p .",
+    "start": "npm run build:live",
+    "prod": "tsc && node ./build/app.js",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "agenda": "^2.0.2",
     "chalk": "^2.4.2",
     "express": "^4.16.4",
     "mongoose": "^5.4.21",
     "redis": "^2.8.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "@types/express": "^4.16.1",
+    "@types/mongoose": "^5.3.24",
+    "@types/node": "^11.13.0",
+    "@types/redis": "^2.8.12",
+    "nodemon": "^1.18.10",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.4.1"
   }
 }

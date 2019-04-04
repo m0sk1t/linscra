@@ -2,9 +2,17 @@
 
 Please install `docker` and `docker-compose` tools first. [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/), [compose](https://docs.docker.com/compose/install/)
 
-## Running
+## Running&Stopping
 
-    sudo docker-compose up
+Call
+
+    docker-compose -f docker-compose-dev.yml up
+    docker-compose -f docker-compose-dev.yml down
+
+or
+
+    make dev-up
+    make dev-down
 
 ## Usage
 
